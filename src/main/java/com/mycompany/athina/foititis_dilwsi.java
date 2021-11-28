@@ -54,6 +54,7 @@ public class foititis_dilwsi extends javax.swing.JFrame {
         jCheckBox3 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         provoli_dilwsis_button = new javax.swing.JButton();
+        provoli_dilwsis_button1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,7 +75,7 @@ public class foititis_dilwsi extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(104, 104, 104))
         );
@@ -122,6 +123,13 @@ public class foititis_dilwsi extends javax.swing.JFrame {
             }
         });
 
+        provoli_dilwsis_button1.setText("Προβολή Βαθμολογιών");
+        provoli_dilwsis_button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                provoli_dilwsis_button1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -136,7 +144,8 @@ public class foititis_dilwsi extends javax.swing.JFrame {
                             .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(provoli_dilwsis_button1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -152,7 +161,9 @@ public class foititis_dilwsi extends javax.swing.JFrame {
                 .addComponent(jCheckBox3)
                 .addGap(18, 18, 18)
                 .addComponent(provoli_dilwsis_button)
-                .addContainerGap(389, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(provoli_dilwsis_button1)
+                .addContainerGap(360, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -289,6 +300,12 @@ public class foititis_dilwsi extends javax.swing.JFrame {
             
     }//GEN-LAST:event_provoli_dilwsis_buttonActionPerformed
 
+    private void provoli_dilwsis_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provoli_dilwsis_button1ActionPerformed
+        // TODO add your handling code here:
+        provoli_vathmologiwn pv = new provoli_vathmologiwn(armit);
+        pv.setVisible(true);
+    }//GEN-LAST:event_provoli_dilwsis_button1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -336,5 +353,6 @@ public class foititis_dilwsi extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton provoli_dilwsis_button;
+    private javax.swing.JButton provoli_dilwsis_button1;
     // End of variables declaration//GEN-END:variables
 }

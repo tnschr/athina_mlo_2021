@@ -117,11 +117,9 @@ public class kathigitis_login extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("USERNAME:");
 
         jLabel4.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("PASSWORD:");
 
         password_field.setBackground(new java.awt.Color(102, 102, 255));
@@ -132,6 +130,11 @@ public class kathigitis_login extends javax.swing.JFrame {
 
         foititis_login_button.setBackground(new java.awt.Color(34, 167, 240));
         foititis_login_button.setText("Είσοδος");
+        foititis_login_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                foititis_login_buttonMouseClicked(evt);
+            }
+        });
         foititis_login_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 foititis_login_buttonActionPerformed(evt);
@@ -214,7 +217,12 @@ public class kathigitis_login extends javax.swing.JFrame {
     private void foititis_login_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foititis_login_buttonActionPerformed
         // TODO add your handling code here:
         
-        try {
+       
+    }//GEN-LAST:event_foititis_login_buttonActionPerformed
+
+    private void foititis_login_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_foititis_login_buttonMouseClicked
+        // TODO add your handling code here:
+         try {
             connection = ConnectionManager.getConnection();
             String query="SELECT * FROM kathigitis WHERE am='"+username_field.getText()+"' AND password='"+password_field.getText()+"'";
             st=connection.createStatement();
@@ -222,6 +230,11 @@ public class kathigitis_login extends javax.swing.JFrame {
             if(set.next())
             {
                 JOptionPane.showMessageDialog(this, "Login was sucessful");
+               kathigitis_panel kp = new kathigitis_panel(username_field.getText());
+                
+                kp.setVisible(true);
+                    kp.setLocationRelativeTo(null);
+                        this.dispose();
             }else
             {
                  JOptionPane.showMessageDialog(this, "Login was NOT sucessful");
@@ -229,7 +242,7 @@ public class kathigitis_login extends javax.swing.JFrame {
         } catch (Exception e) {
             
         }
-    }//GEN-LAST:event_foititis_login_buttonActionPerformed
+    }//GEN-LAST:event_foititis_login_buttonMouseClicked
 
     /**
      * @param args the command line arguments
