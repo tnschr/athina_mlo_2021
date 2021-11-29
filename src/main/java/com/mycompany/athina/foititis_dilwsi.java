@@ -203,7 +203,9 @@ public class foititis_dilwsi extends javax.swing.JFrame {
             if (jCheckBox1.isSelected()){
                 checkbox=jCheckBox1.getText();
                 System.out.println(checkbox);
-                 String query="INSERT INTO dilwsi(am,mathima) VALUES ('"+armit+"','"+checkbox+"')";
+                 String query="INSERT INTO dilwsi(id_mathimatos,am,mathima)"
+                         + "SELECT id_math,'"+armit+"','"+checkbox+"'"
+                         + "FROM mathimata WHERE onoma_math = '"+checkbox+"'";
                  st=connection.createStatement();
                  int set2;
             set2=st.executeUpdate(query);
@@ -231,7 +233,9 @@ public class foititis_dilwsi extends javax.swing.JFrame {
             if (jCheckBox2.isSelected()){
                 checkbox=jCheckBox2.getText();
                 System.out.println(checkbox);
-                 String query="INSERT INTO dilwsi(am,mathima) VALUES ('"+armit+"','"+checkbox+"')";
+                 String query="INSERT INTO dilwsi(id_mathimatos,am,mathima)"
+                         + "SELECT id_math,'"+armit+"','"+checkbox+"'"
+                         + "FROM mathimata WHERE onoma_math = '"+checkbox+"'";
                  st=connection.createStatement();
                  int set2;
             set2=st.executeUpdate(query);
@@ -250,7 +254,7 @@ public class foititis_dilwsi extends javax.swing.JFrame {
             System.out.println("SQLState: " +e.getSQLState());
             System.out.println("SQLState: " +e.getErrorCode());
             JOptionPane.showMessageDialog(this, "Something's Wrong");
-            System.out.println(armit);
+            
             
         }
           try {
@@ -259,7 +263,9 @@ public class foititis_dilwsi extends javax.swing.JFrame {
             if (jCheckBox3.isSelected()){
                 checkbox=jCheckBox3.getText();
                 System.out.println(checkbox);
-                 String query="INSERT INTO dilwsi(am,mathima) VALUES ('"+armit+"','"+checkbox+"')";
+                 String query="INSERT INTO dilwsi(id_mathimatos,am,mathima)"
+                         + "SELECT id_math,'"+armit+"','"+checkbox+"'"
+                         + "FROM mathimata WHERE onoma_math = '"+checkbox+"'";
                  st=connection.createStatement();
                  int set2;
             set2=st.executeUpdate(query);
