@@ -17,7 +17,7 @@ public class ConnectionManager {
     private static String url = "jdbc:mysql://185.162.236.181:3306/athina";
     private static String driverName = "com.mysql.jdbc.Driver";
     private static String username = "root";
-    private static String password = "root";
+    private static String password = "Foo3aez7!";
     private static Connection connection;
     private static String urlstring;
     

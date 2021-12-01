@@ -53,7 +53,7 @@ public class kathigitis_panel extends javax.swing.JFrame {
             
              try {
             connection = ConnectionManager.getConnection();
-            String query="SELECT onoma_math FROM mathimata WHERE am='"+am+"'";
+            String query="SELECT onoma_math FROM mathimata WHERE id_kath='"+am+"'";
             st=connection.createStatement();
             set=st.executeQuery(query);
             
