@@ -408,6 +408,7 @@ public class kathigitis_panel extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
+       
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -421,6 +422,26 @@ public class kathigitis_panel extends javax.swing.JFrame {
 
     private void ipovoliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ipovoliMouseClicked
         // TODO add your handling code here:
+         DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
+        try {
+            connection = ConnectionManager.getConnection();
+            int row = jTable1.getSelectedRow();
+            String value = (jTable1.getModel().getValueAt(row, 1).toString());
+            String selected_am = (jTable1.getModel().getValueAt(row, 0).toString());
+                 String query="UPDATE dilwsi SET vathmos='"+value+"' WHERE am= '"+selected_am+"'";
+                 st=connection.createStatement();
+                 int set2;
+            set2=st.executeUpdate(query);
+            
+
+        } catch (SQLException e) {
+            System.out.println("Message: "+ e.getMessage());
+            System.out.println("SQLState: " +e.getSQLState());
+            System.out.println("SQLState: " +e.getErrorCode());
+            JOptionPane.showMessageDialog(this, "Something's Wrong");
+           
+            
+        }
     }//GEN-LAST:event_ipovoliMouseClicked
 
     private void ipovoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipovoliActionPerformed
