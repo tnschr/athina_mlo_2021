@@ -28,14 +28,24 @@ public class provoli_vathmologiwn extends javax.swing.JFrame {
         
         try {
             connection = ConnectionManager.getConnection();
-                 String query="SELECT mathima,vathmos FROM dilwsi WHERE am = '"+am+"'";
+                 String query="SELECT mathima,vathmos,minima FROM dilwsi WHERE am = '"+am+"'";
                  st=connection.createStatement();
             set=st.executeQuery(query);
             
             while(set.next()){
                 String mathima = String.valueOf(set.getString("mathima"));
                 String vathmos = String.valueOf(set.getString("vathmos"));
-                String tbData[] = {mathima,vathmos};
+                String minima = String.valueOf(set.getString("minima"));
+                int num = Integer.parseInt(minima);
+                
+                if(num==0){
+                    minima = "Μη οριστικοποιημένος";
+                    
+                }
+                else if (num == 1){
+                    minima = "Οριστικοποιημένος";
+                }
+                String tbData[] = {mathima,vathmos,minima};
                 DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
                 
                 tblModel.addRow(tbData);
@@ -81,11 +91,11 @@ public class provoli_vathmologiwn extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Μαθήματα", "Βαθμός"
+                "Μαθήματα", "Βαθμός", "Ενημέρωση"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

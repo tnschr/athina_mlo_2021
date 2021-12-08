@@ -48,7 +48,7 @@ public class grammateia_login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         password_field = new javax.swing.JPasswordField();
         username_field = new javax.swing.JTextField();
-        foititis_login_button = new javax.swing.JButton();
+        grammateia_login_button = new javax.swing.JButton();
         foititis_login_cancel_button = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -117,11 +117,9 @@ public class grammateia_login extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("USERNAME:");
 
         jLabel4.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("PASSWORD:");
 
         password_field.setBackground(new java.awt.Color(102, 102, 255));
@@ -130,11 +128,11 @@ public class grammateia_login extends javax.swing.JFrame {
         username_field.setBackground(new java.awt.Color(102, 102, 255));
         username_field.setForeground(new java.awt.Color(255, 255, 255));
 
-        foititis_login_button.setBackground(new java.awt.Color(34, 167, 240));
-        foititis_login_button.setText("Είσοδος");
-        foititis_login_button.addActionListener(new java.awt.event.ActionListener() {
+        grammateia_login_button.setBackground(new java.awt.Color(34, 167, 240));
+        grammateia_login_button.setText("Είσοδος");
+        grammateia_login_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                foititis_login_buttonActionPerformed(evt);
+                grammateia_login_buttonActionPerformed(evt);
             }
         });
 
@@ -162,7 +160,7 @@ public class grammateia_login extends javax.swing.JFrame {
                             .addComponent(password_field, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                             .addComponent(username_field)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(foititis_login_button, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(grammateia_login_button, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                         .addComponent(foititis_login_cancel_button, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -180,7 +178,7 @@ public class grammateia_login extends javax.swing.JFrame {
                     .addComponent(password_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(foititis_login_button)
+                    .addComponent(grammateia_login_button)
                     .addComponent(foititis_login_cancel_button))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
@@ -211,17 +209,23 @@ public class grammateia_login extends javax.swing.JFrame {
          this.dispose();
     }//GEN-LAST:event_foititis_login_cancel_buttonActionPerformed
 
-    private void foititis_login_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foititis_login_buttonActionPerformed
+    private void grammateia_login_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grammateia_login_buttonActionPerformed
         // TODO add your handling code here:
         
-        try {
+       try {
             connection = ConnectionManager.getConnection();
-            String query="SELECT * FROM grammateia WHERE username='"+username_field.getText()+"' AND password='"+password_field.getText()+"'";
+            String query="SELECT * FROM grammateia WHERE am='"+username_field.getText()+"' AND password='"+password_field.getText()+"'";
             st=connection.createStatement();
             set=st.executeQuery(query);
             if(set.next())
             {
-                JOptionPane.showMessageDialog(this, "Login was sucessful");
+                
+                 
+                grammateia_panel gp = new grammateia_panel(username_field.getText());
+                
+                gp.setVisible(true);
+                    gp.setLocationRelativeTo(null);
+                        this.dispose();
             }else
             {
                  JOptionPane.showMessageDialog(this, "Login was NOT sucessful");
@@ -229,7 +233,7 @@ public class grammateia_login extends javax.swing.JFrame {
         } catch (Exception e) {
             
         }
-    }//GEN-LAST:event_foititis_login_buttonActionPerformed
+    }//GEN-LAST:event_grammateia_login_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,8 +272,8 @@ public class grammateia_login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton foititis_login_button;
     private javax.swing.JButton foititis_login_cancel_button;
+    private javax.swing.JButton grammateia_login_button;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

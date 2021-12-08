@@ -17,7 +17,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Thanos
  */
-public class kathigitis_panel extends javax.swing.JFrame {
+public class grammateia_panel extends javax.swing.JFrame {
 
     /**
      * Creates new form foititis_panel
@@ -26,17 +26,17 @@ public class kathigitis_panel extends javax.swing.JFrame {
     Connection connection=null;
     Statement st=null;
     ResultSet set=null;
-    public kathigitis_panel() {
+    public grammateia_panel() {
         
     }
 
-    kathigitis_panel(String am) throws SQLException {
+    grammateia_panel(String am) throws SQLException {
         initComponents();
        
         
         
         connection = ConnectionManager.getConnection();
-            String name="SELECT * FROM kathigitis WHERE am='"+am+"'";
+            String name="SELECT * FROM grammateia WHERE am='"+am+"'";
             st=connection.createStatement();
             set=st.executeQuery(name);
             if(set.next())
@@ -53,7 +53,7 @@ public class kathigitis_panel extends javax.swing.JFrame {
             
              try {
             connection = ConnectionManager.getConnection();
-            String query="SELECT onoma_math FROM mathimata WHERE id_kath='"+am+"'";
+            String query="SELECT onoma_math FROM mathimata";
             st=connection.createStatement();
             set=st.executeQuery(query);
             
@@ -132,11 +132,11 @@ public class kathigitis_panel extends javax.swing.JFrame {
         kathigitis_tilefwno = new javax.swing.JTextField();
         epilogi_mathimatos = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         anazitisi = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         ipovoli = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -213,24 +213,6 @@ public class kathigitis_panel extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "AM", "Βαθμός"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
         anazitisi.setEditable(false);
 
         jButton2.setText("Αναζήτηση");
@@ -256,6 +238,31 @@ public class kathigitis_panel extends javax.swing.JFrame {
                 ipovoliActionPerformed(evt);
             }
         });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "AM", "Βαθμός", "Οριστική Υποβολή"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -301,7 +308,7 @@ public class kathigitis_panel extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -426,12 +433,27 @@ public class kathigitis_panel extends javax.swing.JFrame {
         try {
             connection = ConnectionManager.getConnection();
             int row = jTable1.getSelectedRow();
+            int col = jTable1.getSelectedColumn();
             String value = (jTable1.getModel().getValueAt(row, 1).toString());
             String selected_am = (jTable1.getModel().getValueAt(row, 0).toString());
+            boolean selected_box = (boolean) (jTable1.getModel().getValueAt(row,2));
                  String query="UPDATE dilwsi SET vathmos='"+value+"' WHERE am= '"+selected_am+"'";
                  st=connection.createStatement();
                  int set2;
             set2=st.executeUpdate(query);
+            
+            if(selected_box == true){
+                String query2="UPDATE dilwsi SET minima='1' WHERE am= '"+selected_am+"'";
+                
+               st=connection.createStatement();
+                set2=st.executeUpdate(query2);
+                
+            }
+            else{
+              String query2="UPDATE dilwsi SET minima='0' WHERE am= '"+selected_am+"'";
+              st=connection.createStatement();
+                set2=st.executeUpdate(query2);
+            }
             JOptionPane.showMessageDialog(this, ("Επιτυχία υποβολής βαθμολογίας για τον φοιτητή: "+selected_am));
             
 
@@ -466,21 +488,23 @@ public class kathigitis_panel extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(kathigitis_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(grammateia_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(kathigitis_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(grammateia_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(kathigitis_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(grammateia_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(kathigitis_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(grammateia_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new kathigitis_panel().setVisible(true);
+                new grammateia_panel().setVisible(true);
             }
         });
     }
